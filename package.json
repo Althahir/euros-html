@@ -1,0 +1,9 @@
+{
+  "name": "euros-html",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sample project to trigger NiFi processors from HTML",
+  "scripts": {
+    "test": "echo \"No tests\" && exit 0"
+  }
+}
