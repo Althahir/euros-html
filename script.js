@@ -34,11 +34,22 @@ async function triggerFlow(processorId) {
       throw new Error(`NiFi response ${response.status}: ${text}`);
     }
 
-    alert('Flux déclenché avec succès');
+    if (typeof alert !== 'undefined') {
+      alert('Flux déclenché avec succès');
+    } else {
+      console.log('Flux déclenché avec succès');
+    }
   } catch (error) {
     console.error('Erreur lors du déclenchement du flux:', error);
-    alert(`Erreur: ${error.message}`);
+    if (typeof alert !== 'undefined') {
+      alert(`Erreur: ${error.message}`);
+    }
   }
 }
-// Expose the function globally so it can be used by inline HTML handlers
-window.triggerFlow = triggerFlow;
+// Expose the function for both browser and Node.js contexts
+if (typeof window !== 'undefined') {
+  window.triggerFlow = triggerFlow;
+}
+if (typeof module !== 'undefined') {
+  module.exports = { triggerFlow };
+}
